@@ -4,8 +4,10 @@ from django_proxy_users import forms as ProxyUsersForms
 from django.contrib import messages as DjangoMessages
 from django.utils.translation import ugettext as _
 
+LOGIN_URL = "/django/proxy/users/login/"
 
-@login_required(login_url='/login/')
+
+@login_required(login_url=LOGIN_URL)
 def home(request):
     """
     Home page.
@@ -51,7 +53,7 @@ def logout(request):
     return redirect('home')
 
 
-@login_required(login_url='/login/')
+@login_required(login_url=LOGIN_URL)
 def login_as(request):
     """
     Display a list of non-superusers to login as.
@@ -92,7 +94,7 @@ def login_as(request):
     })
 
 
-@login_required(login_url='/login/')
+@login_required(login_url=LOGIN_URL)
 def log_back_in_as(request):
     """
     Log super-users back into their original session.

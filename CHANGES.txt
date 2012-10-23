@@ -1,2 +1,3 @@
-0.1.0, (2012.10.23) -- initial release ``django-proxy-user``
-0.1.1, (2012.10.23) -- Improve documentation and refactor settings
+0.0.3, (2012.10.23) -- Improve documentation and urls
+0.0.2, (2012.10.23) -- Improve documentation and refactor settings
+0.0.1, (2012.10.23) -- initial release ``django-proxy-user``
