@@ -6,7 +6,7 @@ setup(
     author='Jesus Rodriguez',
     author_email='jesus.rodriguez.ravelo@gmail.com',
     packages=['django-proxy-user'],
-    url='http://pypi.python.org/pypi/django-proxy-user/',
+    url='https://github.com/jturo/django-proxy-users.git',
     license='LICENSE.txt',
     description='Authentication extension to enable proxy users in django.',
     long_description=open('README.txt').read(),
