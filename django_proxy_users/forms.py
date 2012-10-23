@@ -7,7 +7,7 @@ from django.conf import settings
 from django_proxy_users import settings as ProxyUsersSettings
 
 ORIGINAL_USER_KEY = ProxyUsersSettings.ORIGINAL_USER_KEY
-RECORDS_PER_PAGE = settings.RECORDS_PER_PAGE
+RECORDS_PER_PAGE = ProxyUsersSettings.RECORDS_PER_PAGE
 
 
 class AuthenticationForm(DjangoAuthForms.AuthenticationForm):
@@ -66,10 +66,10 @@ class AuthenticateAsForm(DjangoForms.Form):
         """
         Return a list of users that apply to
         """
-        return self.pagination
+        return self._paginator
 
     @property
-    def pagination(self):
+    def _pagination(self):
         """
         Use lazy instantiation to set paginations for users
         """
