@@ -2,7 +2,7 @@ from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import models as DjangoAuthModels
 from django_proxy_users import settings as ProxyUsersSettings
 
-ORIGINAL_USER_KEY = ProxyUsersSettings.ORIGINAL_USER_KEY
+SESSION_ORIGINAL_USER_KEY = ProxyUsersSettings.SESSION_ORIGINAL_USER_KEY
 
 
 class BaseBackend(ModelBackend):
@@ -35,7 +35,7 @@ class LogBackInAsBackend(BaseBackend):
     """
 
     def authenticate(self, request):
-        user_id = request.session.get(ORIGINAL_USER_KEY, False)
+        user_id = request.session.get(SESSION_ORIGINAL_USER_KEY, False)
         if user_id:
             return DjangoAuthModels.User.objects.get(pk=user_id)
         return None

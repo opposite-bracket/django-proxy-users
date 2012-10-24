@@ -77,6 +77,21 @@ AUTHENTICATION_BACKENDS = (
 )
 ```
 
+### Enable the example.
+
+1. Update the urls.py file.
+
+    urlpatterns = patterns('',
+        ...
+        url(r'^django/proxy/users/', include('django_proxy_users.urls')),
+    )
+
+2. Syncronize the database.
+
+    python manage.py syncdb
+
+3. Create some testing users.
+
 ### Additional and Optional Configuration Options (settings.py).
 
 ``ORIGINAL_USER_KEY``  session key where the original user is stored

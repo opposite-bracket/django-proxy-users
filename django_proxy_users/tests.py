@@ -13,7 +13,8 @@ from django.conf import settings
 from django_proxy_users import settings as ProxyUsersSettings
 from django_proxy_users.auth import backends as ProxyUsersBackends
 
-ORIGINAL_USER_KEY = ProxyUsersSettings.ORIGINAL_USER_KEY
+SESSION_ORIGINAL_USER_KEY = ProxyUsersSettings.SESSION_ORIGINAL_USER_KEY
+TEMPLATE_ORIGINAL_USER_KEY = ProxyUsersSettings.TEMPLATE_ORIGINAL_USER_KEY
 PASSWORD = 'letmein'
 
 
@@ -21,7 +22,7 @@ class BaseTestCase(TestCase):
 
     backends = ("django_proxy_users.auth.backends.LoginAsBackend",
         "django_proxy_users.auth.backends.LogBackInAsBackend",
-        "django_proxy_users.contrib.auth.backends.ModelBackend",)
+        "django.contrib.auth.backends.ModelBackend",)
 
     def setUp(self):
         """
@@ -253,7 +254,7 @@ class LoginAsContextProcessorTest(BaseTestCase):
         response = superuser_client.get(reverse('home'))
         self.assertEqual(
             self.super_user_1.pk,
-            response.context[ORIGINAL_USER_KEY].pk
+            response.context[TEMPLATE_ORIGINAL_USER_KEY].pk
         )
 
 

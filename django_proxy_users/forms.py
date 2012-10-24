@@ -6,7 +6,7 @@ from django import forms as DjangoForms
 from django.conf import settings
 from django_proxy_users import settings as ProxyUsersSettings
 
-ORIGINAL_USER_KEY = ProxyUsersSettings.ORIGINAL_USER_KEY
+SESSION_ORIGINAL_USER_KEY = ProxyUsersSettings.SESSION_ORIGINAL_USER_KEY
 RECORDS_PER_PAGE = ProxyUsersSettings.RECORDS_PER_PAGE
 
 
@@ -66,13 +66,6 @@ class AuthenticateAsForm(DjangoForms.Form):
         """
         Return a list of users that apply to
         """
-        return self._paginator
-
-    @property
-    def _pagination(self):
-        """
-        Use lazy instantiation to set paginations for users
-        """
         if not self._paginator:
             paginator = Paginator(self._users, RECORDS_PER_PAGE)
             try:
@@ -99,7 +92,7 @@ class AuthenticateAsForm(DjangoForms.Form):
             if user:
                 DjangoAuth.login(request, user)
                 if 'django_proxy_users.auth.backends.LogBackInAsBackend' in settings.AUTHENTICATION_BACKENDS:
-                    request.session[ORIGINAL_USER_KEY] = login_back_to_user.pk
+                    request.session[SESSION_ORIGINAL_USER_KEY] = login_back_to_user.pk
                 return True
             else:
                 return False
@@ -112,7 +105,7 @@ class AuthenticateAsForm(DjangoForms.Form):
         Keyword arguments:
         request -- HttpRequest Object
         """
-        if request.session.get(ORIGINAL_USER_KEY, False):
+        if request.session.get(SESSION_ORIGINAL_USER_KEY, False):
             user = DjangoAuth.authenticate(request=request)
-            del request.session[ORIGINAL_USER_KEY]
+            del request.session[SESSION_ORIGINAL_USER_KEY]
             DjangoAuth.login(request, user)
