@@ -2,7 +2,7 @@ from distutils.core import setup
 
 
 setup(
-    name='django-proxy-user',
+    name='django-proxy-users',
     version='0.0.5',
     author='Jesus Rodriguez',
     author_email='jesus.rodriguez.ravelo@gmail.com',
