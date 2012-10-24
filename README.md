@@ -70,8 +70,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 ```
 AUTHENTICATION_BACKENDS = (
     ...
-    "account.auth.backends.LoginAsBackend",
-    "account.auth.backends.LogBackInAsBackend",
+    "django_proxy_users.auth.backends.LoginAsBackend",
+    "django_proxy_users.auth.backends.LogBackInAsBackend",
     "django.contrib.auth.backends.ModelBackend",
     ...
 )
@@ -79,12 +79,16 @@ AUTHENTICATION_BACKENDS = (
 
 ### Enable the example.
 
-1. Update the urls.py file.
+1. Enable the django admin panel to add some testing users.
 
-    urlpatterns = patterns('',
-        ...
-        url(r'^django/proxy/users/', include('django_proxy_users.urls')),
-    )
+2. Update the urls.py file.
+
+    ```
+        urlpatterns = patterns('',
+            ...
+            url(r'^django/proxy/users/', include('django_proxy_users.urls')),
+        )
+    ```
 
 2. Syncronize the database.
 
