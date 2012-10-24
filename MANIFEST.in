@@ -1,4 +1,2 @@
-include CHANGES README LICENCE
+include CHANGES.txt README.md LICENCE.txt
 recursive-include django_proxy_users *.py *.html *.js *.css *.png
-include docs/Makefile
-recursive-include docs/source *

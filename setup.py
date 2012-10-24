@@ -4,7 +4,7 @@ from setuptools import find_packages
 
 setup(
     name='django-proxy-users',
-    version='0.0.7',
+    version='0.0.8',
     author='Jesus Rodriguez',
     author_email='jesus.rodriguez.ravelo@gmail.com',
     packages=find_packages(),
